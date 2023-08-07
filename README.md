@@ -17,28 +17,40 @@ I analyzed the data to answer the following questions:
     GROUP BY year
     ORDER BY year
     ```
-    - 2019: 300,263.70
-    - 2020: 298,353.78
-    - 2021: 301,819.44
-    - 2022: 296,363.88
+
+    |Year| Avg Price|
+    |:--:|---------:|
+    |2019|300,263.70|
+    |2020|298,353.78|
+    |2021|301,819.44|
+    |2022|296,363.88|
+
 2. What is the average price of a home for each year it was built that has three bedrooms and three bathrooms?
     ```sql
     SELECT
-        YEAR(date) AS year,
+        date_built,
         ROUND(AVG(price), 2) AS avg_price
     FROM home_sales
     WHERE bedrooms=3 AND bathrooms=3
-    GROUP BY year
-    ORDER BY year
+    GROUP BY date_built
+    ORDER BY date_built
     ```
-    - 2019: 287,287.82
-    - 2020: 294,204.16
-    - 2021: 294,211.46
-    - 2022: 292,725.69
+
+    |Date Built| Avg Price|
+    |:--------:|---------:|
+    |      2010|292,859.62|
+    |      2011|291,117.47|
+    |      2012|293,683.19|
+    |      2013|295,962.27|
+    |      2014|290,852.27|
+    |      2015|288,770.30|
+    |      2016|290,555.07|
+    |      2017|292,676.79|
+
 3. What is the average price of a home for each year that has three bedrooms, three bathrooms, two floors, and is greater than or equal to 2,000 square feet?
     ```sql
     SELECT
-        YEAR(date) AS year,
+        date_built,
         ROUND(AVG(price), 2) AS avg_price
     FROM home_sales
     WHERE
@@ -46,13 +58,21 @@ I analyzed the data to answer the following questions:
         AND bathrooms=3
         AND floors=2
         AND sqft_living>=2000
-    GROUP BY year
-    ORDER BY year
+    GROUP BY date_built
+    ORDER BY date_built
     ```
-    - 2019: 289,859.14
-    - 2020: 292,289.09
-    - 2021: 296,330.96
-    - 2022: 290,242.99
+
+    |Date Built| Avg Price|
+    |:--------:|---------:|
+    |      2010|285,010.22|
+    |      2011|276,553.81|
+    |      2012|307,539.97|
+    |      2013|303,676.79|
+    |      2014|298,264.72|
+    |      2015|297,609.97|
+    |      2016|293,965.10|
+    |      2017|280,317.58|
+
 4. What is the "view" rating for the average price of a home where the homes are greater than or equal to $350,000?
     ```sql
     SELECT
